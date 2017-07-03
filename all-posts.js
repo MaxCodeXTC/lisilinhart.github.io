@@ -2,10 +2,12 @@ const directory = './posts';
 const fs = require('fs');
 let allFiles = [];
 
-function convertFile(path) {
+function convertFile(file) {
   return new Promise(function(resolve, reject) {
+    const path = directory + '/' + file;
     const lineCount = 5;
     const post = {};
+    post.slug = file.slice(0, -3);
 
     let stream = fs.createReadStream(path, {
       flags: "r",
@@ -46,8 +48,7 @@ function convertFile(path) {
 fs.readdir(directory, (err, files) => {
   const promises = [];
   files.forEach(file => {
-    const path = directory + '/' + file;
-    promises.push(convertFile(path));
+    promises.push(convertFile(file));
   });
 
   Promise.all(promises).then(function(res) {
