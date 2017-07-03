@@ -1,0 +1,27 @@
+{
+  "name": "lisilinhart.github.io",
+  "version": "1.0.0",
+  "description": "Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "allPosts": "node all-posts.js"
+  },
+  "pre-commit": "allPosts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisilinhart/lisilinhart.github.io.git"
+  },
+  "keywords": [
+    "Portfolio"
+  ],
+  "author": "Lisi Linhart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lisilinhart/lisilinhart.github.io/issues"
+  },
+  "homepage": "https://github.com/lisilinhart/lisilinhart.github.io#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "pre-commit": "^1.2.2"
+  }
+}
