@@ -45,6 +45,12 @@ function convertFile(file) {
   });
 }
 
+function sortFunction(a,b){  
+    var dateA = new Date(a.date).getTime();
+    var dateB = new Date(b.date).getTime();
+    return dateA > dateB ? -1 : 1;  
+};
+
 fs.readdir(directory, (err, files) => {
   const promises = [];
   files.forEach(file => {
@@ -52,7 +58,9 @@ fs.readdir(directory, (err, files) => {
   });
 
   Promise.all(promises).then(function(res) {
-    const content = JSON.stringify(res);
+    var sortedRes = [...res];
+    sortedRes.sort(sortFunction);
+    const content = JSON.stringify(sortedRes);
     fs.writeFile("./all-posts.json", content, 'utf8', function (err) {
         if (err) { return console.log(err); }
         console.log("The file was saved!");
