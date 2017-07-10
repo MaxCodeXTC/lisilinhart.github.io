@@ -5,7 +5,7 @@ let allFiles = [];
 function convertFile(file) {
   return new Promise(function(resolve, reject) {
     const path = directory + '/' + file;
-    const lineCount = 5;
+    const lineCount = 6;
     const post = {};
     post.slug = file.slice(0, -3);
 
@@ -69,13 +69,3 @@ fs.readdir(directory, (err, files) => {
     console.log("Error")
   });
 });
-
-  //console.log(allFiles);
-
-  // const content = JSON.stringify(allFiles);
-  // console.log(allFiles, content);
-  // fs.writeFile("./all-posts.json", content, 'utf8', function (err) {
-  //     if (err) { return console.log(err); }
-
-  //     console.log("The file was saved!");
-  // }); 
