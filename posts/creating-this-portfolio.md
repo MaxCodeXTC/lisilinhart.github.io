@@ -1,6 +1,7 @@
 ---
 title: Creating this portfolio
 lang: en
+keys: tech
 date: 2017-07-09
 ---
 
