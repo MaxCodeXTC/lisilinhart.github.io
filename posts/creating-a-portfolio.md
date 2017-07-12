@@ -56,13 +56,11 @@ I decided to reduce the amount of images and external libraries I used to avoid 
 ### Minimal Blog Setup
 Being a developer I love Markdown and decided I just wanted a minimal Blog Setup, where I had a folder with markdown files, that then in turn where all loaded from the Github repo  and display on the `\writing` route. For each new post I wanted to define a heading that had all the information in it, so I could display the posts according to the language set and maybe even filter them by keys. 
 
-```
----
+```markdown
 title: Creating a portfolio
 lang: en
 keys: tech, accessiblity, animation
 date: 2017-07-09
----
 ```
 
 I ended up writing a little node script that created a JSON with all posts heading information like `lang, keys, date`, that updated everytime I pushed a new post, so I didn’t have to go through all files when accessing the `\writing` route. 
