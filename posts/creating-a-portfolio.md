@@ -1,7 +1,7 @@
 ---
 title: Things to consider when creating a portfolio
 lang: en
-keys: tech
+keys: tech, accessibility, animation, portfolio
 date: 2017-07-11
 ---
 
@@ -60,7 +60,7 @@ Being a developer I love Markdown and decided I just wanted a minimal Blog Setup
 ---
 title: Creating a portfolio
 lang: en
-keys: tech
+keys: tech, accessiblity, animation
 date: 2017-07-09
 ---
 ```
