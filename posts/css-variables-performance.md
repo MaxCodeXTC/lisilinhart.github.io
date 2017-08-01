@@ -168,6 +168,6 @@ If we compare the performance marks of setting variables in JavaScript via inlin
 Written in cooperation with [Marcel Freinbichler](www.freinbichler.me)
 
 ## Resources
-[How to Use CSS Variables for Animation.](https://webdesign.tutsplus.com/tutorials/how-to-use-css-variables-for-animation--cms-28868) - Dennis Gaebel
-[Reduce the Scope and Complexity of Style Calculations.](https://developers.google.com/web/fundamentals/performance/rendering/reduce-the-scope-and-complexity-of-style-calculations) - Paul Lewis
-[Making Custom Properties (CSS Variables) More Dynamic](https://css-tricks.com/making-custom-properties-css-variables-dynamic/) — Dan Wilson
+* [How to Use CSS Variables for Animation.](https://webdesign.tutsplus.com/tutorials/how-to-use-css-variables-for-animation--cms-28868) - Dennis Gaebel
+* [Reduce the Scope and Complexity of Style Calculations.](https://developers.google.com/web/fundamentals/performance/rendering/reduce-the-scope-and-complexity-of-style-calculations) - Paul Lewis
+* [Making Custom Properties (CSS Variables) More Dynamic](https://css-tricks.com/making-custom-properties-css-variables-dynamic/) — Dan Wilson
