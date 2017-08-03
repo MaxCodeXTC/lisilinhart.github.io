@@ -34,7 +34,7 @@ If we want our variable to only be visible for a specific component, we can just
 
 What’s great about CSS variables is that they are dynamic, so they can be changed in different scopes and at runtime. So instead of defining a new variable like we did with `--title-color`, we could just change the existing global one and the change would only affect this specific component.
 
-```
+```css
 .title {
   --main-color: aqua;
 	color: var(--main-color);
