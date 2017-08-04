@@ -50,7 +50,7 @@ What’s great about CSS variables is that they are dynamic, so they can be chan
 
 To get rid of this problem class centric methods like [BEM](http://getbem.com/) have been introduced. It aims at reducing specificity by having a single class for every element.
 
-```
+```css
 	.card { ... }
 	.card__heading { ... }
 	.card__title { ... }
@@ -165,7 +165,7 @@ Using `calc()` in combination with CSS variables is a good way to gain more flex
 
 If we compare the performance marks of setting variables in JavaScript via inline styles versus the `setProperty` method  there are some significant differences between the browsers. While setting properties via inline styles is very fast in Safari, it’s very slow in Firefox, so using `setProperty` to set a variable is preferred
 
-Written in cooperation with [Marcel Freinbichler](www.freinbichler.me)
+Written in cooperation with [Marcel Freinbichler](https://freinbichler.me/)
 
 ## Resources
 * [How to Use CSS Variables for Animation.](https://webdesign.tutsplus.com/tutorials/how-to-use-css-variables-for-animation--cms-28868) - Dennis Gaebel
