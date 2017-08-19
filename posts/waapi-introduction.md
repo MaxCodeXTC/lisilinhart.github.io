@@ -16,7 +16,7 @@ Since I haven’t used the Api before, I just started playing around with it in 
 The most useful resource for me was  the [Intro Series by Dan Wilson](http://danielcwilson.com/blog/2015/07/animations-intro/). Furthermore I found [Rachel Nabors Talk](https://vimeo.com/226736126) helpful to get a feeling for the Api and what it can do. Additionally this [CSS-tricks article](https://css-tricks.com/css-animations-vs-web-animations-api/) helped me get more into the differences to CSS animation and the options available. Once I had the basics down, I mostly used the official [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)  to dig deeper into the Api.
 
 ### Core Concepts
-![](https://raw.githubusercontent.com/lisilinhart/lisilinhart.github.io/master/images/waapi-concepts.svg)
+![](https://raw.githubusercontent.com/lisilinhart/lisilinhart.github.io/master/images/waapi-concepts.png)
 I made a little illustration of the constructors that work together in the Web Animations Api. Everytime we animate something via `element.animate(..)` or `new Animation(...)` or `document.timeline.play(…)`  we get an animation object, which has different functions like `play() or pause()`.  
 
 #### A KeyframeEffect inside Sequence- or GroupEffect
