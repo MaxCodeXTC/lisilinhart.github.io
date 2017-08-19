@@ -30,12 +30,14 @@ const effectTwo = new KeyframeEffect(anotherTarget, frames, options);
 
 const sequence = new SequenceEffect([
     effectOne,
-	  effectTwo,
+    effectTwo,
 ]);
 
 const animation = document.timeline.play(sequence)
 animation.pause();
 ```
+
+Once we created an animation we can  use it's methods like `play()`, `pause()`, `reverse()` or `cancel()` and alter it's properties like `playbackRate`.
 
 #### How to structure Keyframes
 For the [planets animation](https://codepen.io/lisilinhart/full/dzNYKb/) I had to loop over the particle elements, the radius and the background of each planet and create a `SequenceEffect`  out of the single `KeyframeEffects`. In order to keep an overview I created an object including all the keyframes arrays I needed. 
