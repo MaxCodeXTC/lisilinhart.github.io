@@ -20,9 +20,9 @@ The most useful resource for me was  the [Intro Series by Dan Wilson](http://dan
 I made a little illustration of the constructors that work together in the Web Animations Api. Everytime we animate something via `element.animate(..)` or `new Animation(...)` or `document.timeline.play(…)`  we get an animation object, which has different functions like `play() or pause()`.  
 
 #### A KeyframeEffect inside Sequence- or GroupEffect
-These are the core parts of how our animations are generated. It’s important to realise that these effects don’t do anything if we don’t add them to a `new Anmation(..)` or play them on the `document.timeline.play(..)`. If we use `element.animate(..)` it’s basically the same thing as creating a `KeyframeEffect` and wrapping it into a `new Animation(myEffect)`. 
+`KeyframeEffects` are the core parts of how our animations are generated. It’s important to realise that these effects don’t do anything if we don’t add them to a `new Anmation(..)` or play them on the `document.timeline.play(..)`. If we use `element.animate(..)` it’s basically the same thing as creating a `KeyframeEffect` and wrapping it into a `new Animation(myEffect)`. 
 
-The `KeyframeEffect` takes 3 arguments (the element itself, the animations frames array and the timing options object) and can be stored in a variable to be used in a `Sequence- or GroupEffect`.  The `SequenceEffect` will create an effect, that plays the `KeyframeEffects` after each other, whereas the `GroupEffect` will play them simultaneously.  
+The `KeyframeEffect` takes 3 arguments (the element we want to animate, the animations frames array and the timing options object). The Effect can be stored in a variable to be used in a `Sequence- or GroupEffect`.  The `SequenceEffect` will create an effect, that plays the `KeyframeEffects` after each other, whereas the `GroupEffect` will play them simultaneously.  
 
 ```javascript
 const effectOne = new KeyframeEffect(target, frames, options);
@@ -76,19 +76,19 @@ const timings = {
 ```
 
 ##### The fill property
-The `fill` property in the options object, does the same thing as the CSS [animation-fill-mode](https://developer.mozilla.org/de/docs/Web/CSS/animation-fill-mode). It defines whether the changes made by the animation are kept after the animations finishes or if it goes back to what it was before. For the planets animation this was important to use, because the fade in animation was different to the fade out animation. While the fade in animation animated all the children elements of the `div.planet`, the fade out animation only animated the parent `div.planet` changing it’s opacity and transform. When I wanted to animate the children elements for a second time, the parent wasn’t visible anymore, so you couldn’t see anything. Changing `fill: none` on the parent and using `animation.cancel()` on the fade in animation sequence of the children, basically reset all the changes made and made it possible to animate everything in again. 
+The `fill` property in the options object, does the same thing as the CSS [animation-fill-mode](https://developer.mozilla.org/de/docs/Web/CSS/animation-fill-mode). It defines whether the changes made by the animation are kept after the animations finishes or if it goes back to what it was before. For the planets animation this was important to use, because the `fadeIn` animation was different to the `fadeOut` animation. While the `fadeIn` animation animated all the children elements of the `div.planet`, the `fadeOut` animation only animated the parent `div.planet` changing it’s `opacity` and `transform`. When I wanted to animate the child elements for a second time, the parent wasn’t visible anymore, so you couldn’t see anything. Changing the `fill-mode` to `fill: none;` on the parent and using `animation.cancel()` on the `fadeIn` animation sequence of the children, basically reset all the changes and made it possible to animate everything in again. 
 
 ##### cubic-bezier is your friend
-Using `ease-in-out` is fine on a lot of animations, but it’s really worth it getting to know the `cubic-bezier` syntax, because it let’s you create more interesting animations. Setting the last property to a value higher than 1, gave the planet a little bounce on the fade in. I recommend Lea Verous [cubic-bezier tool](http://cubic-bezier.com/) to play around with it and get to know the syntax better. 
+Using `ease-in-out` is fine on a lot of animations, but it’s really worth it getting to know the `cubic-bezier` syntax, because it let’s you create more interesting animations. Setting the last property to a value higher than 1, gave the planet a nice little bounce on the `fadeIn`. I recommend Lea Verous [cubic-bezier tool](http://cubic-bezier.com/) to play around with it and get to know the syntax better. 
 
 ```javascript 
   easing: "cubic-bezier(0.2, 0, .3, 1.5)"
 ```
 
 ### Handling the direction when the slider updated
-Since I wanted the planets to go either left or right, depending on which way one moved the slider thumb, I needed to create four different keyframe effects `fadeInLeft`, `fadeInRight`, `fadeOutLeft` and `fadeOutRight`. Since the labels for the slider were also animated and positioned slightly different, they got their own keyframes and options object with the matching effects. 
+Since I wanted the planets to go either left or right, depending on which way the slider thumb was moved, I needed to create four different keyframe effects `fadeInLeft`, `fadeInRight`, `fadeOutLeft` and `fadeOutRight`. Since the labels for the slider were also animated and positioned slightly different, they got their own keyframes and options object with the matching effects. 
 
-In order to register the update I added an `eventListener` to the `input`, which I debounced with the `lodash` debounce function in order to get rid of rapidly fired events in between. 
+In order to register the update I added an `eventListener` to the `input`, which I debounced with a `lodash debounce` debounce in order to get rid of rapidly fired events in between. 
 ```javascript
 range.addEventListener(
   "input",
@@ -96,10 +96,10 @@ range.addEventListener(
 );
 ```
 
-To find out if the planets needed to go left or right, the previous index was saved in a variable and on every update compared to the current index. If it was bigger the direction was `1` and the `document.timeline.play(fadeInLeft)`  for the planet at that index was played, after the old planets `document.timeline.play(fadeOutRight)` was finished. 
+To find out if the planets needed to go left or right, the previous slider index was saved in a variable and on every update compared to the current index. If it was bigger the direction was set to `1` and the `document.timeline.play(fadeInLeft)`  for the planet at that index was played, after the old planets `document.timeline.play(fadeOutRight)` was finished. Else it was set to `0` and got animated in from the other side.
 
-### Only animating when the other animation was finished 
-Since I didn’t want the animations to be interrupted and broken off, I created and `isAnimating` that’s set to `false` in the beginning. When an animation is started, I set this variable to `true` and once it finishes, set it to `false` again.  This way, when we update the slider when an animation is still active, we can call a `setTimeout` and delay the update until the other animation finishes. 
+### Only animating when the previous animation was finished 
+Since I didn’t want the animations to be interrupted and broken off, I created and `isAnimating` variable, that’s set to `false` in the beginning. When an animation is started, I set this variable to `true` and once it finishes, set it to `false` again.  This way, when we update the slider when an animation is still active, we can call a `setTimeout` and delay the update until the other animation finishes. 
 
 ```javascript
 animation.onfinish = () => {
@@ -108,7 +108,7 @@ animation.onfinish = () => {
 ```
 
 ### Bonus: CSS Variables
-Since I love CSS variables, I decided to use them in this pen aswell, since they make everything easier.  For the planets for example I only had to update the planet and particle color in the classes instead of reassigning all the `background` properties for the children. 
+Since I love CSS variables, I decided to use them in this pen aswell, because they just make everything easier.  For the planets I only had to update the `--planet-color` and `--particle-color` in the classes instead of reassigning all the `background` properties for the children. 
 
 ```css 
 .planet {
@@ -130,7 +130,7 @@ Since I love CSS variables, I decided to use them in this pen aswell, since they
 ```
 
 #### Updating the sliders thumb color with CSS variables
-Since I wanted the thumb to update to the planet color once the slider changed, I also defined a `—planet-color` variable on the thumb. Once an updated happened I set this variable via Javascript.
+Since I wanted the thumb to update to the planet color once the slider changed, I also defined a `—planet-color` variable on the thumb. Once an updated happened I set this variable to the matching color via Javascript.
 
 ```javascript
 range.style.setProperty(`--planet-color`, planetColors[index]);
@@ -139,7 +139,7 @@ range.style.setProperty(`--planet-color`, planetColors[index]);
 I could have defined the `—planet-color` on the `:root` level, but since I already set the planets colors in the CSS and only want to update the thumb color, I only set it on the input directly, since this is more performant. If you wanna know more about CSS Variables performance you can read [this article](https://lisilinhart.info/posts/css-variables-performance) I wrote some time ago. 
 
 ### Conclusion
-I love using GSAP for doing sequenced animations, just because it’s so easy, supports all the browsers, works great with SVG and can do so many amazing things. So it took me a little bit to adapt to this different way the WAAPI works. In order to take advantage of the Api one still has to have a good knowledge of how CSS animations works, otherwise it will be really hard to use. Nevertheless I think it’s amazing to get more native animation options on the browser level without needing to load a whole library like GSAP.  
+I love using GSAP for doing sequenced animations, just because it’s so easy, supports all the browsers, works great with SVG and can do so many amazing things. After diving into the Api it became clear, that WAAPI isn't going to replace GSAP, just because GSAP is aimed to do a lot more than the WAAPI. In order to take advantage of the Api one still has to have a good knowledge of how CSS animations works, otherwise it will be hard to use. Nevertheless I think it’s amazing to get more native animation options on the browser level without needing to load a whole library like GSAP.
 
 ### Resources
 * [WAAPI Resources - Rachel Nabors](http://rachelnabors.com/waapi)
