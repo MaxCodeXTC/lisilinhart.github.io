@@ -74,7 +74,7 @@ const timings = {
 ```
 
 ##### The fill property
-The `fill` property in the options object, does the same thing as the CSS [`animation-fill-mode`](https://developer.mozilla.org/de/docs/Web/CSS/animation-fill-mode). It defines whether the changes made by the animation are kept after the animations finishes or if it goes back to what it was before. For the planets animation this was important to use, because the fade in animation was different to the fade out animation. While the fade in animation animated all the children elements of the `div.planet`, the fade out animation only animated the parent `div.planet` changing it’s opacity and transform. When I wanted to animate the children elements for a second time, the parent wasn’t visible anymore, so you couldn’t see anything. Changing `fill: none` on the parent and using `animation.cancel()` on the fade in animation sequence of the children, basically reset all the changes made and made it possible to animate everything in again. 
+The `fill` property in the options object, does the same thing as the CSS [animation-fill-mode](https://developer.mozilla.org/de/docs/Web/CSS/animation-fill-mode). It defines whether the changes made by the animation are kept after the animations finishes or if it goes back to what it was before. For the planets animation this was important to use, because the fade in animation was different to the fade out animation. While the fade in animation animated all the children elements of the `div.planet`, the fade out animation only animated the parent `div.planet` changing it’s opacity and transform. When I wanted to animate the children elements for a second time, the parent wasn’t visible anymore, so you couldn’t see anything. Changing `fill: none` on the parent and using `animation.cancel()` on the fade in animation sequence of the children, basically reset all the changes made and made it possible to animate everything in again. 
 
 ##### cubic-bezier is your friend
 Using `ease-in-out` is fine on a lot of animations, but it’s really worth it getting to know the `cubic-bezier` syntax, because it let’s you create more interesting animations. Setting the last property to a value higher than 1, gave the planet a little bounce on the fade in. I recommend Lea Verous [cubic-bezier tool](http://cubic-bezier.com/) to play around with it and get to know the syntax better. 
@@ -127,7 +127,7 @@ Since I love CSS variables, I decided to use them in this pen aswell, since they
 }
 ```
 
-#### Updating the Slide Thumb color with CSS variables
+#### Updating the sliders thumb color with CSS variables
 Since I wanted the thumb to update to the planet color once the slider changed, I also defined a `—planet-color` variable on the thumb. Once an updated happened I set this variable via Javascript.
 
 ```javascript
