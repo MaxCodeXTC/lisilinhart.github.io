@@ -1,7 +1,7 @@
 ---
 title: Getting started with the Web Animations Api
 lang: en
-keys: web animation api, javascript, css variables, 
+keys: web animation api, javascript, css variables
 date: 2017-08-19
 ---
 
