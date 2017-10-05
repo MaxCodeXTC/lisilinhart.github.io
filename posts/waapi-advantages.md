@@ -141,7 +141,7 @@ However when animations get more complicated and you want to have more control o
 
 ### Resources
 
-[Dan Wilson - When to Use the Web Animations API](http://danielcwilson.com/blog/2016/08/why-waapi/)
-[James Lee - Animation: CSS vs. Javascript](https://www.seguetech.com/animation-css-vs-javascript/)
-[Designing Safer Web Animation For Motion Sensitivity](https://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)
-[Non Breaking Space Show - Rachel Nabors](https://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)
+* [Dan Wilson - When to Use the Web Animations API](http://danielcwilson.com/blog/2016/08/why-waapi/)
+* [James Lee - Animation: CSS vs. Javascript](https://www.seguetech.com/animation-css-vs-javascript/)
+* [Designing Safer Web Animation For Motion Sensitivity](https://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)
+* [Non Breaking Space Show - Rachel Nabors](https://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)
