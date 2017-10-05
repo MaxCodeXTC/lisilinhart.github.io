@@ -8,7 +8,7 @@ date: 2017-10-05
 # Advantages of the Web Animations API
 
 ### CSS vs. Javascript
-While CSS Animation has gotten really powerful in the past few years, especially with the rise of CSS Variables, CSS is still a /declarative/ language while Javascript is /imperative/.  So if you do an animation in CSS you have to specifically describe what is going to happen for every step, whereas in Javascript you are more flexible and have more control, because you can programmatically define the animation in an animation object. 
+While CSS Animation has gotten really powerful in the past few years, especially with the rise of CSS Variables, CSS is still a _declarative_ language while Javascript is _imperative_.  So if you do an animation in CSS you have to specifically describe what is going to happen for every step, whereas in Javascript you are more flexible and have more control, because you can programmatically define the animation in an animation object. 
 
 #### WAAPI Animation controls
 The WAAPI let’s you reverse, pause, speed up your animations and gives you callbacks for when an animation has finished. These things are fairly hard to do in CSS and often require class changes on the DOM elements.
