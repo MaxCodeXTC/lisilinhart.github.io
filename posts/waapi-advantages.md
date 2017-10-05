@@ -23,7 +23,6 @@ animation.cancel(); // playstate: "idle"
 animation.finish(); // playstate: "finished"
 ```
 
-
 ### Styling vs. Behaviour
 The more interactive and complicated an animation gets in CSS, the more CSS tricks & hacks you are going to need, which might make your CSS harder to read for other people. So for example of you have a `div`, that you want to fade out when you click on it, there would be three forward ways to do it. 
 
@@ -131,6 +130,17 @@ There is also a great way to take care of this in CSS with CSS Custom Properties
 	animation: fadeOut calc(var(--duration) * 1s) linear;
 }
 ```
+
+### Interaction
+The WAAPI works really well hand in hand with Javascript DOM Events and creating more interactive animations. 
+
+Last week I created a [pen animating tiles](https://codepen.io/lisilinhart/pen/rGwbwg) to reveal underlying text. It creates minimal `Tile` function class, that creates an animation for each element in the grid `gridItems.forEach((item) => new Tile(item));` .
+
+Once the animation is created, it is immediately paused with `this.opacity.pause();` and only played once the `mouseover` event is fired.  
+
+When we click the `Reset Tiles` button, I change the `playbackRate` of all the animations to `-1` , which plays all the animations in reverse and animates them back in. I could have also called `this.opacity.reverse()` , which would have done the same thing.
+
+This interaction was quite simple to create with the WAAPI, but would have required a lot of class changes if I’d done it with CSS Animation, which would probably have resulted in less understandable code. 
 
 ### Conclusion
 The Web Animations API definitely has an important place in the world of web animation, because it builds the basis for describing native animations across all browsers. It gives us a lot of new options like playback control, hardware acceleration and access to all animations in our document. It also let’s you put more complicated animation behaviour (for example chained timelines) in your Javascript, which in return can make your CSS simpler. 
