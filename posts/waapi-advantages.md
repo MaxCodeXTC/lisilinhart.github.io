@@ -28,7 +28,7 @@ animation.finish(); // playstate: "finished"
 The more interactive and complicated an animation gets in CSS, the more CSS tricks & hacks you are going to need, which might make your CSS harder to read for other people. So for example of you have a `div`, that you want to fade out when you click on it, there would be three forward ways to do it. 
 
 #### Pure CSS
-In order to do it in pure CSS you would need a checkbox to register the click. Once the checkbox is `:checked` you could play the according CSS animation. This does however require another element and can be unreliable if you have many click events.
+In order to do it in [pure CSS](https://codepen.io/lisilinhart/pen/RLxKrQ) you would need a checkbox to register the click. Once the checkbox is `:checked` you could play the according CSS animation. This does however require another element and can be unreliable if you have many click events.
 
 ```css
 input[type="checkbox"]:checked + .element {
@@ -38,7 +38,7 @@ input[type="checkbox"]:checked + .element {
 
 
 ### CSS Animation with class changes via JS
-What gotten quite popular in the past years is to start animations by toggling an animation class via Javascript. For this option you already need some Javascript to handle your events. Your animations however are still defined declaratively in CSS. 
+What gotten quite popular in the past years is to start animations by [toggling an animation class](https://codepen.io/lisilinhart/pen/KXqqyX) via Javascript. For this option you already need some Javascript to handle your events. Your animations however are still defined declaratively in CSS. 
 
 ```javascript
 element.addEventListener('click', (e) => {
@@ -58,7 +58,7 @@ element.addEventListener('click', (e) => {
 ```
 
 ### Animate in Javascript with the WAAPI
-With the Web Animations API you got a third option, in which you define all of your animations in your Javascript. This option allows you to take the animation behaviour out of your CSS and use CSS purely for styling, while still taking advantage of CSS hardware acceleration and rendering animations over the GPU. 
+With the Web Animations API you got a third option, in which you [define all of your animations in your Javascript](https://codepen.io/lisilinhart/pen/EwXvWx). This option allows you to take the animation behaviour out of your CSS and use CSS purely for styling, while still taking advantage of CSS hardware acceleration and rendering animations over the GPU. 
 
 ```javascript 
 element.addEventListener('click', (e) => {
