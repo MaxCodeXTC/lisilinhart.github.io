@@ -8,7 +8,7 @@ date: 2017-10-06
 # Advantages of the Web Animations API
 
 ### CSS vs. Javascript
-While CSS Animation has gotten really powerful in the past few years, especially with the rise of CSS Variables, CSS will always be _declarative_ language while Javascript is _imperative_.  So if you do an animation in CSS you have to specifically describe what is going to happen for every step, whereas in Javascript with the WAAPI you are more flexible, because you can programmatically define the animation in an animation object.
+While CSS Animation has gotten really powerful in the past few years, especially with the rise of CSS Variables, CSS will always be a _declarative_ language while Javascript is _imperative_.  So if you do an animation in CSS you have to specifically describe what is going to happen for every step, whereas in Javascript with the WAAPI you are more flexible, because you can programmatically define the animation in an animation object.
 
 #### WAAPI Animation controls
 The WAAPI let’s you reverse, pause, speed up your animations and gives you callbacks for when an animation has finished. These things are fairly hard to do in CSS , especially chaining multiple animations requires a lot of variables or specifying exactly when what it is going to happen. 
@@ -95,23 +95,16 @@ Since it’s not fully supported yet, there is a great [polyfill](https://github
 ### Animations in the document
 If you have all animations described in your `document.timeline`, you have easy access to all the animations that are happening on your site. 
 
-If for example  someone was browsing your site with a poor device or a browser that isn’t optimised to do animations at all, you can call `cancel()` on all the animations defined in the `document.timeline`. 
-
-```javascript
-document.getAnimations().forEach( // get all animations
-  (animation) => animation.cancel(); // cancel them
-);
-```
-
 ### Responsibility
-A similar problem is that animations can be mentally taxing for people if they’re overdone or if they suffer from an illness like vestibular disorder (more in [this article](https://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)) .  So providing an option to disable the animations is important. You can also make them slower with the `playbackRate` property of the Animation object. 
+It’s a big problem that animations can be mentally taxing for people if they’re overdone or if they suffer from an illness like vestibular disorder (more in [this article](https://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity)) .  So providing an option to disable the animations is important. Since they are all in the document you can call `getAnimations()` on the `document` and `cancel()` them if needed. 
 
 ```javascript
 const animation = element.animate(/* animation */);
 
 if (window.matchMedia('(prefers-reduced-motion)')) {
-	animation.playbackRate = .5 // make the animation slower
-	animation.cancel(); // cancels the animation entirely 
+	document.getAnimations().forEach( // get all animations
+  		(animation) => animation.cancel(); // cancel them
+	); 
 }
 ```
 
