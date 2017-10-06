@@ -2,16 +2,16 @@
 title: Advantages of the Web Animations Api
 lang: en
 keys: web animation api, javascript, css variables, a11y
-date: 2017-10-05
+date: 2017-10-06
 ---
 
 # Advantages of the Web Animations API
 
 ### CSS vs. Javascript
-While CSS Animation has gotten really powerful in the past few years, especially with the rise of CSS Variables, CSS is still a _declarative_ language while Javascript is _imperative_.  So if you do an animation in CSS you have to specifically describe what is going to happen for every step, whereas in Javascript you are more flexible and have more control, because you can programmatically define the animation in an animation object. 
+While CSS Animation has gotten really powerful in the past few years, especially with the rise of CSS Variables, CSS will always be _declarative_ language while Javascript is _imperative_.  So if you do an animation in CSS you have to specifically describe what is going to happen for every step, whereas in Javascript with the WAAPI you are more flexible, because you can programmatically define the animation in an animation object.
 
 #### WAAPI Animation controls
-The WAAPI let’s you reverse, pause, speed up your animations and gives you callbacks for when an animation has finished. These things are fairly hard to do in CSS and often require class changes on the DOM elements.
+The WAAPI let’s you reverse, pause, speed up your animations and gives you callbacks for when an animation has finished. These things are fairly hard to do in CSS , especially chaining multiple animations requires a lot of variables or specifying exactly when what it is going to happen. 
 
 ```javascript
 const animation = element.animate(/* animation */);
@@ -28,7 +28,7 @@ animation.finish(); // playstate: "finished"
 The more interactive and complicated an animation gets in CSS, the more CSS tricks & hacks you are going to need, which might make your CSS harder to read for other people. So for example of you have a `div`, that you want to fade out when you click on it, there would be three forward ways to do it. 
 
 #### Pure CSS
-In order to do it in [pure CSS](https://codepen.io/lisilinhart/pen/RLxKrQ) you would need a checkbox to register the click. Once the checkbox is `:checked` you could play the according CSS animation. This does however require another element and can be unreliable if you have many click events.
+In order to do it in [pure CSS](https://codepen.io/lisilinhart/pen/RLxKrQ) you would need a checkbox to register the click. Once the checkbox is `:checked` you could play the according CSS animation. This does however require another element on top of our original element. 
 
 ```css
 input[type="checkbox"]:checked + .element {
@@ -78,7 +78,7 @@ element.addEventListener('click', (e) => {
 Nevertheless this doesn’t mean you have to abandon CSS animations. You still have the option to combine the two, when it makes more sense to do an animation in CSS, because of the simplicity.
 
 ### Hardware Acceleration
-In the past you would often prefer CSS Animation, because it gave you hardware acceleration and it could render properties like `opacity` or `transform` very performant over the GPU. But now you will also get this acceleration in the WAAPI as soon as the browsers supports the Web Animation API and they are all working hard on implementing it right now.
+In the past you would often prefer CSS Animation, because it gave you hardware acceleration and it could render properties like `opacity` or `transform` very performant over the GPU. But now you will also get this acceleration in the WAAPI, if the browsers already supports the Web Animation API.
 
 ### Tell the Browser what is animated
 When you use the Web Animations Api, all your animations will be described in the `document.timeline` and you (and the browser) have access to all the animations. 
@@ -90,7 +90,7 @@ The browser are already working hard on implementing the API and Firefox  has la
 
 Of course there will always be a need for libraries like Greensock, because they are aimed to do a lot more than the API  (SVG morphing for example) and are easily understandable for developers and designers, but with the API you have a simpel native option to do more advanced animations without needing to add or learn a new library. 
 
-Since it’s not fully supported yet, there is a great [polyfill](https://github.com/web-animations/web-animations-js) you can use and it support all the major browsers already, falling back to the native implementation if there is one.
+Since it’s not fully supported yet, there is a great [polyfill](https://github.com/web-animations/web-animations-js) you can use and it [supports all the major browsers](https://github.com/web-animations/web-animations-js/blob/dev/docs/support.md#browser-support) already, falling back to the native implementation if there is one.
 
 ### Animations in the document
 If you have all animations described in your `document.timeline`, you have easy access to all the animations that are happening on your site. 
@@ -133,20 +133,20 @@ There is also a great way to take care of this in CSS with CSS Custom Properties
 ```
 
 ### Interaction
-The WAAPI works really well hand in hand with Javascript DOM Events and creating more interactive animations. 
+The WAAPI works hand in hand with Javascript DOM Events and creating more interactive, reactive animations. 
 
-Last week I created a [pen animating tiles](https://codepen.io/lisilinhart/pen/rGwbwg) to reveal underlying text. It creates minimal `Tile` function class, that creates an animation for each element in the grid `gridItems.forEach((item) => new Tile(item));` .
+Last week I created a [pen animating tiles](https://codepen.io/lisilinhart/pen/rGwbwg) to reveal underlying text. It creates `Tile` function class, that creates an animation for each element in the grid `gridItems.forEach((item) => new Tile(item));` .
 
-Once the animation is created `this.opacity = this.element.animate(..)`, it is immediately paused with `this.opacity.pause();` and only played once the `mouseover` event is fired.  
+Once the animation for this tile is created `this.opacity = this.element.animate(..)`, it is immediately paused with `this.opacity.pause();` and only played once the `mouseover` event is fired.  
 
 When we click the `Reset Tiles` button, I change the `playbackRate` of all the animations to `-1` , which plays all the animations in reverse and animates them back in. I could have also called `this.opacity.reverse()` , which would have done the same thing.
 
-This interaction was quite simple to create with the WAAPI, but would have required a lot of class changes if I’d done it with CSS Animation, which would probably have resulted in less understandable code. 
+This interaction was quite simple to create with the WAAPI, but would have required a lot of class changes on the DOM if I’d done it with CSS Animation. In this case working with the animation object  turned out to be really useful and straight forward. 
 
 ### Conclusion
-The Web Animations API definitely has an important place in the world of web animation, because it builds the basis for describing native animations across all browsers. It gives us a lot of new options like playback control, hardware acceleration and access to all animations in our document. It also let’s you put more complicated animation behaviour (for example chained timelines) in your Javascript, which in return can make your CSS simpler. 
+The Web Animations API definitely has an important place in the world of web animation, because it builds the basis for describing native animations across all browsers. It gives us a lot of new options like playback control, CSS hardware acceleration in JS and access to all animations in our document. It also let’s you put more complicated animation behaviour (e.g. chained timelines) in your Javascript, which in return can make your CSS simpler. 
 
-In conclusion there is many ways to animate on the web and the WAAPI is not the solution to all the animation challenges. There are really amazing pure CSS solutions for common problems and I recommend everyone to try to do animations in CSS only, just because it can be really rewarding to dive deeper into CSS, since you don’t always need Javascript. Just have a look at [David Khourshid](https://codepen.io/davidkpiano/pen/ByNPQw), [Una Kravets](https://codepen.io/una/pen/Wjvdqm) or [Shaws](https://codepen.io/shshaw/pen/pWwrmM) Codepens and there are many more.
+In conclusion there is many ways to animate on the web and the WAAPI is not the solution to all the animation challenges. There are really amazing pure CSS solutions for common problems and I recommend everyone to try to do animations in pure CSS, just because it can be really rewarding to dive deeper into CSS, because you really don’t always need Javascript. CSS is really powerful by itself. Just have a look at [David Khourshid](https://codepen.io/davidkpiano/pen/ByNPQw), [Una Kravets](https://codepen.io/una/pen/Wjvdqm) or [Shaws](https://codepen.io/shshaw/pen/pWwrmM) Codepens.
 
 However when animations get more complicated and you want to have more control over your native animations, the WAAPI is going to be your friend. Javascript will give you a lot of flexibility, when you want to create dynamic values or handle DOM Events to make something more interactive. 
 
