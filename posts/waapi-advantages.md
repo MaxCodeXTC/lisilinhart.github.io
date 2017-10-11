@@ -81,14 +81,14 @@ Nevertheless this doesn’t mean you have to abandon CSS animations. You still h
 In the past you would often prefer CSS Animation, because it gave you hardware acceleration and it could render properties like `opacity` or `transform` very performant over the GPU. But now you will also get this acceleration in the WAAPI, if the browsers already supports the Web Animation API.
 
 ### Tell the Browser what is animated
-When you use the Web Animations Api, all your animations will be described in the `document.timeline` and you (and the browser) have access to all the animations. 
+When you use the Web Animations API, all your animations will be described in the `document.timeline` and you (and the browser) have access to all the animations. 
 
 What’s a problem with external animation libraries is that the Browser sometimes doesn’t recognise elements that the library animates as elements that are animated and therefore they aren’t promoted to their own layer or rendered over the GPU. With the WAAPI we’re telling the Browser: “Hey Browser, I’m animating this element with the API you’re providing, can you please optimise it for me with what’s available to you?” 
 
 ### It’s native
 The browser are already working hard on implementing the API and Firefox  has large parts of it implemented already. This means you maybe won’t need to add an large external library to do some chained custom animations in the future. 
 
-Of course there will always be a need for libraries like Greensock, because they are aimed to do a lot more than the API  (SVG morphing for example) and are easily understandable for developers and designers, but with the API you have a simpel native option to do more advanced animations without needing to add or learn a new library. 
+Of course there will always be a need for libraries like Greensock, because they are aimed to do a lot more than the API  (SVG morphing for example) and are easily understandable for developers and designers, but with the API you have a simple native option to do more advanced animations without needing to add or learn a new library. 
 
 Since it’s not fully supported yet, there is a great [polyfill](https://github.com/web-animations/web-animations-js) you can use and it [supports all the major browsers](https://github.com/web-animations/web-animations-js/blob/dev/docs/support.md#browser-support) already, falling back to the native implementation if there is one.
 
