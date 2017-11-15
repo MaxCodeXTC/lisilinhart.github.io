@@ -88,7 +88,7 @@ Working with the grid is awesome and simple enough, but what’s tedious about i
 ```
 
 #### Loops with named grid-areas
-The simplest way I found for myself would be to use SASS loops and data-attributes to assign the grid-areas, because I found it to be really readable and could still switch my HTML around to be correct when I changed the `display: block:` on smaller screens. 
+The simplest way I found for myself would be to use SASS loops and data-attributes to assign the grid-areas, because I found it to be really readable and could still switch my HTML around to be correct when I changed the `display: block;` on smaller screens. 
 
 So if I had 9 items like in the example like above, I’d just create a loop over 9 items and give them named grid-areas starting with i for item. 
 ```css
@@ -161,7 +161,7 @@ If you don’t want to use data attributes for this reason or because it doesn�
 
 ```css
   @for $i from 1 through 9 {
-    .grid__item--{$i} {
+    .grid__item--#{$i} {
       grid-area: unquote(nth($grid-items, $i));
     }
   }
