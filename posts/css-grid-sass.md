@@ -88,7 +88,7 @@ Working with the grid is awesome and simple enough, but what’s tedious about i
 ```
 
 #### Loops with named grid-areas
-The simplest way I found for myself would be to use SASS loops and data-attributes to assign the grid-areas, because I found it to be really readable and could still switch my HTML around to be correct when I changed the `display: block:` on smaller screens. 
+The simplest way I found for myself would be to use SASS loops and data-attributes to assign the grid-areas, because I found it to be really readable and could still switch my HTML around to be correct when I changed the `display: block;` on smaller screens. 
 
 So if I had 9 items like in the example like above, I’d just create a loop over 9 items and give them named grid-areas starting with i for item. 
 ```css
@@ -161,7 +161,7 @@ If you don’t want to use data attributes for this reason or because it doesn�
 
 ```css
   @for $i from 1 through 9 {
-    .grid__item--{$i} {
+    .grid__item--#{$i} {
       grid-area: unquote(nth($grid-items, $i));
     }
   }
@@ -181,5 +181,4 @@ If you have a more complicated layout, especially with overlapping items, it’s
 For me personally using data-attributes in combination with SASS lists turned out really easy to read, because when I read through my HTML, I immediately knew which `grid-area` got applied to this element.  Not having to write out each `grid-area` property for each item is especially nice if you have a lot of items to define or if you find yourself often adapting the different `grid-area` properties for different items. 
 
 At first, I started using `:nth-child(..)` to define my `grid-area` but this ended up being a problem when I wanted to switch around my HTML, which isn’t the case if you use data-attributes like `[data-grid='1']` or a specific class like `.grid__item--1`, because it’s not dependent on the position of the item in your HTML. 
-divided by the amount of items we want to have, if we end up using 16 rows, it’s gonna look the same as the solution above. 
 
